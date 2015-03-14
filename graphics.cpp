@@ -5,14 +5,16 @@ Graphics::Graphics()
 	screen_width = 640;
 	screen_height = 480;
 	
+	clear_colour = Colour();
+	
 	window = NULL;
-	surface = NULL;
+	renderer = NULL;
 }
 
 Graphics::~Graphics()
 {
 	SDL_DestroyWindow( window );
-	SDL_Quit(); //Shouldn't be here
+	SDL_Quit(); //Shouldn't be here (I don't think)
 }
 
 void Graphics::init_window()
@@ -30,13 +32,15 @@ void Graphics::init_window()
 	}
 	else
 	{
-		//Get window surface
-		surface = SDL_GetWindowSurface( window );
-
-		//Fill the surface white
-		SDL_FillRect( surface, NULL, SDL_MapRGB( surface->format, 0xFF, 0xFF, 0xFF ) );
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		
-		//Update the surface
-		SDL_UpdateWindowSurface( window );
+		SDL_SetRenderDrawColor(renderer, clear_colour.r, clear_colour.g, clear_colour.b, clear_colour.a);
+		SDL_RenderClear(renderer);
+		SDL_RenderPresent(renderer);
 	}
+}
+
+void Graphics::drawRect(SDL_Rect rect)
+{
+	SDL_RenderDrawRect(rect);
 }
