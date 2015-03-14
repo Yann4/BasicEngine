@@ -1,14 +1,7 @@
-struct Point
-{
-	float x, y;
-	Point():x(0), y(0){};
-	Point(float x, float y): x(x), y(y){};
-};
+#ifndef _GAMEOBJECT_H_
+#define _GAMEOBJECT_H_
 
-enum Shape
-{
-	RECTANGLE, CIRCLE, TRIANGLE, OTHER, UNDEFINED
-};
+#include "graphics.h"
 
 class GameObject
 {
@@ -16,10 +9,12 @@ class GameObject
 		Point position;
 		Shape shape;
 		Point size;
+		Colour colour;
 		
 	public:
 		GameObject();
-		GameObject(Shape shape, Point pos, float width, float height);
+		GameObject(Shape shape, Point pos, float width, float height, Colour colour);
 		void Update();
-		void Draw();
+		void Draw(Graphics& graphics);
 };
+#endif

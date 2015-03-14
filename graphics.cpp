@@ -1,5 +1,4 @@
 #include "graphics.h"
-
 Graphics::Graphics()
 {
 	screen_width = 640;
@@ -40,7 +39,77 @@ void Graphics::init_window()
 	}
 }
 
+void Graphics::drawObject(Object ob)
+{
+	to_draw.push(ob);
+}
+
+void Graphics::Draw()
+{
+	while(!to_draw.empty())
+	{
+		Object o = to_draw.top();
+		to_draw.pop();
+		
+		SDL_SetRenderDrawColor(renderer, o.colour.r, o.colour.g, o.colour.b, o.colour.a);
+		switch(o.shape)
+		{
+			case RECTANGLE:
+				SDL_Rect rect;
+				rect.x = o.position.x;
+				rect.y = o.position.y;
+				rect.w = o.size.x;
+				rect.h = o.size.y;
+				drawRect(rect);
+				break;
+			case TRIANGLE:
+				drawTriangle(o.position, o.size);
+				break;
+			case CIRCLE:
+				drawCircle(o.position, o.size.x);
+				break;
+		}
+		
+		SDL_SetRenderDrawColor(renderer, clear_colour.r, clear_colour.g, clear_colour.b, clear_colour.a);
+	}
+	SDL_RenderPresent(renderer);
+}
+
 void Graphics::drawRect(SDL_Rect rect)
 {
-	SDL_RenderDrawRect(rect);
+	SDL_RenderDrawRect(renderer, &rect);
+}
+
+void Graphics::drawTriangle(Point pos, Point size)
+{
+	Point a, b, c;
+	
+	//Top point of triangle
+	a.x = pos.x + (size.x / 2);
+	a.y = pos.y;
+	
+	//Bottom left point
+	b.x = pos.x;
+	b.y = pos.y + size.y;
+	
+	//Bottom right point
+	c.x = pos.x + size.x;
+	c.y = pos.y + size.y;
+	
+	SDL_RenderDrawLine(renderer, a.x, a.y, b.x, b.y);
+	SDL_RenderDrawLine(renderer, b.x, b.y, c.x, c.y);
+	SDL_RenderDrawLine(renderer, c.x, c.y, a.x, a.y);
+}
+
+void Graphics::drawCircle(Point centre, float radius)
+{
+	Point onC;
+	
+	for(double theta = 0.0; theta < 360; theta++)
+	{
+		onC.x = centre.x + radius * cos(theta);
+		onC.y = centre.y + radius * sin(theta);
+		
+		SDL_RenderDrawPoint(renderer, onC.x, onC.y);
+	}
 }
