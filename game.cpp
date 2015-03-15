@@ -5,6 +5,29 @@
 
 typedef std::chrono::high_resolution_clock Time;
 
+bool Game::load()
+{
+	//Add code for loading and initialising objects
+	return true;
+}
+
+void Game::unload()
+{
+	//Add code for tearing down objects
+}
+
+void Game::Update()
+{
+	//Add code to update all game objects
+}
+
+void Game::Draw()
+{
+	//Add code to draw all game objects
+	graphics.Draw(); //This line needed to actually draw all of the objects onscreen
+}
+
+/******************* Don't need to edit below here ********************/
 Game::Game()
 {
 	graphics = Graphics(640, 480);
@@ -20,33 +43,6 @@ Game::Game()
 Game::~Game()
 {
 	unload();
-}
-
-bool Game::load()
-{
-	//Add code for loading and initialising objects
-	Colour c;
-	c.light_blue();
-	tri = GameObject(TRIANGLE, Point(50,50), 30, 40, c);
-	return true;
-}
-
-void Game::unload()
-{
-	//Add code for tearing down objects
-}
-
-void Game::Update()
-{
-	//Add code to update all game objects
-	tri.Update();
-}
-
-void Game::Draw()
-{
-	//Add code to draw all game objects
-	tri.Draw(graphics);
-	graphics.Draw();
 }
 
 void Game::mainLoop()

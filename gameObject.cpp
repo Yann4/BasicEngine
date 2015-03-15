@@ -13,9 +13,9 @@ GameObject::GameObject(Shape shape, Point pos, float width, float height, Colour
 void GameObject::Update()
 {
 	//Add update logic here
-	go.rotation += 0.001;
 }
 
+//Shouldn't need changing too much, assuming the GraphicsObject is up to date at this point
 void GameObject::Draw(Graphics& graphics)
 {
 	graphics.drawObject(go);

@@ -8,19 +8,17 @@ class Game
 {
 	private:
 		Graphics graphics;
-		
-		GameObject tri;
-		
-		//60fps
-		const double ms_per_frame = 1.0/60.0;
+		const double ms_per_frame = 1.0/60.0; //60fps
 		
 	public:
 		Game();
 		~Game();
 		
+		//Just need to call this from main
 		void mainLoop();
 		
 	private:
+		//These need filling in for each game
 		void Update();
 		void Draw();
 		

@@ -10,6 +10,7 @@ class GameObject
 	public:
 		GameObject();
 		GameObject(Shape shape, Point pos, float width, float height, Colour colour);
+
 		void Update();
 		void Draw(Graphics& graphics);
 };
