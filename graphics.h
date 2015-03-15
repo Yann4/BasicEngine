@@ -3,7 +3,6 @@
 
 #include<SDL2/SDL.h>
 #include <stack>
-#include <iostream>
 
 struct Point
 {
@@ -21,7 +20,7 @@ struct Colour
 
 enum Shape
 {
-	RECTANGLE, CIRCLE, TRIANGLE, OTHER, UNDEFINED
+	RECTANGLE, CIRCLE, TRIANGLE, UNDEFINED
 };
 
 struct GraphicsObject
@@ -49,7 +48,7 @@ class Graphics
 		std::stack<GraphicsObject> to_draw;
 	public:
 		Graphics();
-		Graphics(int s_width, int s_height);
+		Graphics(int s_width, int s_height, Colour colour = Colour(0, 0, 255, 255));
 		~Graphics();
 
 		void init_window();
@@ -57,9 +56,11 @@ class Graphics
 		void Draw();
 
 	private:
-		void drawRect(SDL_Rect rect);
-		void drawTriangle(Point pos, Point size);
+		void drawRect(Point pos, Point size, float rotation);
+		void drawTriangle(Point pos, Point size, float rotation);
 		void drawCircle(Point centre, float radius);
+		
+		Point rotatePoint(Point toRotate, double theta, Point rotateAbout);
 };
 
 #endif

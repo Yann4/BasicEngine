@@ -4,13 +4,12 @@
 #include "graphics.h"
 #include "gameObject.h"
 
-#include <chrono>
-#include <vector>
-
 class Game
 {
 	private:
 		Graphics graphics;
+		
+		GameObject tri;
 		
 		//60fps
 		const double ms_per_frame = 1.0/60.0;

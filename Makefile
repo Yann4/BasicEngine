@@ -3,4 +3,6 @@ ELF=app
 LINKER_FLAGS=-lSDL2 -std=c++0x
 
 all:
-		g++ $(OBJS) $(LINKER_FLAGS) -o $(ELF)
+	g++ $(OBJS) $(LINKER_FLAGS) -o $(ELF)
+clean:
+	rm $(ELF)

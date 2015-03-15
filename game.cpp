@@ -1,6 +1,8 @@
 #include "game.h"
 
 #include <iostream>
+#include <chrono>
+
 typedef std::chrono::high_resolution_clock Time;
 
 Game::Game()
@@ -23,6 +25,7 @@ Game::~Game()
 bool Game::load()
 {
 	//Add code for loading and initialising objects
+	tri = GameObject(TRIANGLE, Point(50,50), 30, 40, Colour(255, 0, 0, 255));
 	return true;
 }
 
@@ -34,12 +37,13 @@ void Game::unload()
 void Game::Update()
 {
 	//Add code to update all game objects
+	tri.Update();
 }
 
 void Game::Draw()
 {
 	//Add code to draw all game objects
-	
+	tri.Draw(graphics);
 	graphics.Draw();
 }
 
@@ -48,6 +52,7 @@ void Game::mainLoop()
 	SDL_Event event;
 	auto frame_start_time = Time::now(); //Needs to be initialised to Time::now() so auto knows what type it is
 	bool exit = false;
+
 	while(!exit)
 	{
 		frame_start_time = Time::now();
