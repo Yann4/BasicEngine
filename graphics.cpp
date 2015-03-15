@@ -1,4 +1,6 @@
 #include "graphics.h"
+
+/******************* Initialisation/Tear down *************************/
 Graphics::Graphics()
 {
 	screen_width = 640;
@@ -8,6 +10,13 @@ Graphics::Graphics()
 	
 	window = NULL;
 	renderer = NULL;
+}
+
+Graphics::Graphics(int s_width, int s_height)
+{
+	Graphics();
+	screen_width = s_width;
+	screen_height = s_height;
 }
 
 Graphics::~Graphics()
@@ -39,7 +48,8 @@ void Graphics::init_window()
 	}
 }
 
-void Graphics::drawObject(Object ob)
+/************************** Public draw functions *********************/
+void Graphics::drawObject(GraphicsObject ob)
 {
 	to_draw.push(ob);
 }
@@ -48,7 +58,7 @@ void Graphics::Draw()
 {
 	while(!to_draw.empty())
 	{
-		Object o = to_draw.top();
+		GraphicsObject o = to_draw.top();
 		to_draw.pop();
 		
 		SDL_SetRenderDrawColor(renderer, o.colour.r, o.colour.g, o.colour.b, o.colour.a);
@@ -75,6 +85,8 @@ void Graphics::Draw()
 	SDL_RenderPresent(renderer);
 }
 
+
+/************************* Drawing primatives *************************/
 void Graphics::drawRect(SDL_Rect rect)
 {
 	SDL_RenderDrawRect(renderer, &rect);

@@ -6,11 +6,7 @@
 class GameObject
 {
 	private:
-		Point position;
-		Shape shape;
-		Point size;
-		Colour colour;
-		
+		GraphicsObject go;
 	public:
 		GameObject();
 		GameObject(Shape shape, Point pos, float width, float height, Colour colour);

@@ -4,6 +4,7 @@
 #include<SDL2/SDL.h>
 #include <stack>
 #include <iostream>
+
 struct Point
 {
 	float x, y;
@@ -23,14 +24,15 @@ enum Shape
 	RECTANGLE, CIRCLE, TRIANGLE, OTHER, UNDEFINED
 };
 
-struct Object
+struct GraphicsObject
 {
 	Shape shape;
 	Point position;
 	Point size;
 	Colour colour;
-	Object(Shape sh = UNDEFINED, Point pos = Point(), Point size = Point(), Colour col = Colour()):
-	shape(sh), position(pos), size(size), colour(col){};
+	float rotation;
+	GraphicsObject(Shape sh = UNDEFINED, Point pos = Point(), Point size = Point(), Colour col = Colour(), float rotation = 0.0):
+	shape(sh), position(pos), size(size), colour(col), rotation(rotation){};
 };
 
 class Graphics
@@ -44,12 +46,14 @@ class Graphics
 		
 		Colour clear_colour;
 
-		std::stack<Object> to_draw;
+		std::stack<GraphicsObject> to_draw;
 	public:
 		Graphics();
+		Graphics(int s_width, int s_height);
 		~Graphics();
+
 		void init_window();
-		void drawObject(Object ob);
+		void drawObject(GraphicsObject ob);
 		void Draw();
 
 	private:
