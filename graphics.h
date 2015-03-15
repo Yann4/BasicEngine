@@ -16,6 +16,15 @@ struct Colour
 	
 	Colour():r(255), g(255), b(255), a(255){};
 	Colour(int r, int g, int b, int a=255):r(r), g(g), b(b), a(a){};
+
+	void red(){r = 255; g = 0; b = 0; a = 255;};
+	void green(){r = 0; g = 255; b = 0; a = 255;};
+	void blue(){r = 0; g = 0; b = 255; a = 255;};
+	void light_blue(){r = 70; g = 177; b = 249; a = 255;};
+	void yellow(){r = 231; g = 255; b = 0; a = 255;};
+	void pink(){r = 255; g = 0; b = 255; a = 255;};
+	void white(){r = 255; g = 255; b = 255; a = 255;}
+	void black(){r = 0; g = 0; b = 0; a = 255;}
 };
 
 enum Shape
@@ -56,7 +65,7 @@ class Graphics
 		void Draw();
 
 	private:
-		void drawRect(Point pos, Point size, float rotation);
+		void drawRectangle(Point pos, Point size, float rotation);
 		void drawTriangle(Point pos, Point size, float rotation);
 		void drawCircle(Point centre, float radius);
 		

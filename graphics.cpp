@@ -9,6 +9,7 @@ Graphics::Graphics()
 	screen_height = 480;
 	
 	clear_colour = Colour();
+	clear_colour.blue();
 	
 	window = NULL;
 	renderer = NULL;
@@ -75,7 +76,7 @@ void Graphics::Draw()
 		switch(o.shape)
 		{
 			case RECTANGLE:
-				drawRect(o.position, o.size, o.rotation);
+				drawRectangle(o.position, o.size, o.rotation);
 				break;
 			case TRIANGLE:
 				drawTriangle(o.position, o.size, o.rotation);
@@ -94,7 +95,7 @@ void Graphics::Draw()
 }
 
 /************************* Drawing primatives *************************/
-void Graphics::drawRect(Point pos, Point size, float rotation)
+void Graphics::drawRectangle(Point pos, Point size, float rotation)
 {
 	Point a, b, c, d;
 	

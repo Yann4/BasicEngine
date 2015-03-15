@@ -25,7 +25,9 @@ Game::~Game()
 bool Game::load()
 {
 	//Add code for loading and initialising objects
-	tri = GameObject(TRIANGLE, Point(50,50), 30, 40, Colour(255, 0, 0, 255));
+	Colour c;
+	c.light_blue();
+	tri = GameObject(TRIANGLE, Point(50,50), 30, 40, c);
 	return true;
 }
 
