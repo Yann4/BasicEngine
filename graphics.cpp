@@ -23,7 +23,7 @@ void Graphics::init_window()
 		std::cout << "SDL could not initialize! SDL_Error: " <<  SDL_GetError() << std::endl;
 	}
 	
-	window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN );
+	window = SDL_CreateWindow( "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN );
 	
 	if( window == NULL )
 	{
