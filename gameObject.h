@@ -2,6 +2,7 @@
 #define _GAMEOBJECT_H_
 
 #include "graphics.h"
+#include "dataTypes.h"
 
 class GameObject
 {

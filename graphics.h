@@ -4,11 +4,7 @@
 #include<SDL2/SDL.h>
 #include <stack>
 
-struct Point
-{
-	float x, y;
-	Point(float x = 0, float y = 0):x(x), y(y){};
-};
+#include "dataTypes.h"
 
 struct Colour
 {
@@ -25,11 +21,6 @@ struct Colour
 	void pink(){r = 255; g = 0; b = 255; a = 255;};
 	void white(){r = 255; g = 255; b = 255; a = 255;}
 	void black(){r = 0; g = 0; b = 0; a = 255;}
-};
-
-enum Shape
-{
-	RECTANGLE, CIRCLE, TRIANGLE, UNDEFINED
 };
 
 struct GraphicsObject
