@@ -1,4 +1,4 @@
-CPP=main.cpp graphics.cpp gameObject.cpp game.cpp
+CPP=main.cpp graphics.cpp gameObject.cpp game.cpp collision.cpp
 H=dataTypes.h
 ELF=app
 LINKER_FLAGS=-lSDL2 -std=c++0x

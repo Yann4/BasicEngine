@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "collision.h"
 #include <iostream>
 #include <chrono>
 
@@ -8,6 +8,11 @@ typedef std::chrono::high_resolution_clock Time;
 bool Game::load()
 {
 	//Add code for loading and initialising objects
+	Colour c;
+	c.red();
+	a = GameObject(CIRCLE, Point(50, 20), 20, 20, c);
+	c.white();
+	b = GameObject(CIRCLE, Point(100, 50), 20, 20, c);
 	return true;
 }
 
@@ -18,12 +23,21 @@ void Game::unload()
 
 void Game::Update()
 {
+	Collision c;
 	//Add code to update all game objects
+	a.Update();
+	//b.Update();
+	Point collision = c.checkCollision(CollisionObject(a.go.position, a.go.shape, a.go.size, 0), CollisionObject(b.go.position, b.go.shape, b.go.size, 0));
+	std::cout << "(" << collision.x << ", " << collision.y << ")" << std::endl;
+	a.go.position.x += collision.x;
+	a.go.position.y += collision.y;
 }
 
 void Game::Draw()
 {
 	//Add code to draw all game objects
+	a.Draw(graphics);
+	b.Draw(graphics);
 	graphics.Draw(); //This line needed to actually draw all of the objects onscreen
 }
 

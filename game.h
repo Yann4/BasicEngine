@@ -9,7 +9,7 @@ class Game
 	private:
 		Graphics graphics;
 		const double ms_per_frame = 1.0/60.0; //60fps
-		
+		GameObject a, b;
 	public:
 		Game();
 		~Game();

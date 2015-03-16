@@ -6,7 +6,8 @@
 
 class GameObject
 {
-	private:
+	//SHOULD BE PRIVATE
+	public:
 		GraphicsObject go;
 	public:
 		GameObject();

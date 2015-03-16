@@ -3,9 +3,7 @@
 
 #include "dataTypes.h"
 
-class Collision
-{
-	struct CollisionObject
+struct CollisionObject
 	{
 		Point position;
 		Shape shape;
@@ -17,6 +15,8 @@ class Collision
 		position(pos), shape(shape), size(size), rotation(rotation){};
 	};
 	
+class Collision
+{	
 	public:
 		Collision();
 		Point checkCollision(CollisionObject a, CollisionObject b);
