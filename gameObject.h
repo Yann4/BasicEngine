@@ -6,8 +6,7 @@
 
 class GameObject
 {
-	//SHOULD BE PRIVATE
-	public:
+	private:
 		GraphicsObject go;
 	public:
 		GameObject();
@@ -15,5 +14,12 @@ class GameObject
 
 		void Update();
 		void Draw(Graphics& graphics);
+		
+		inline Point getPosition(){return go.position;};
+		inline Shape getShape(){return go.shape;};
+		inline Point getSize(){return go.size;};
+		
+		inline void moveBy(Point p){go.position.x += p.x; go.position.y += p.y;};
+		inline void moveTo(Point p){go.position = p;};
 };
 #endif

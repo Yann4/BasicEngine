@@ -27,10 +27,13 @@ void Game::Update()
 	//Add code to update all game objects
 	a.Update();
 	//b.Update();
-	Point collision = c.checkCollision(CollisionObject(a.go.position, a.go.shape, a.go.size, 0), CollisionObject(b.go.position, b.go.shape, b.go.size, 0));
-	std::cout << "(" << collision.x << ", " << collision.y << ")" << std::endl;
-	a.go.position.x += collision.x;
-	a.go.position.y += collision.y;
+	Point collision = c.checkCollision(CollisionObject(a.getPosition(), a.getShape(), a.getSize(), 0), 
+										CollisionObject(b.getPosition(), b.getShape(), b.getSize(), 0));
+	if(collision.x != 0 && collision.y != 0)
+	{
+		std::cout << "(" << collision.x << ", " << collision.y << ")" << std::endl;
+		a.moveBy(collision);
+	}
 }
 
 void Game::Draw()
