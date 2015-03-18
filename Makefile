@@ -1,5 +1,5 @@
 CPP=main.cpp graphics.cpp gameObject.cpp game.cpp
-H=dataTypes.h
+H=dataTypes.h qtree.h
 ELF=app
 LINKER_FLAGS=-lSDL2 -std=c++0x
 
