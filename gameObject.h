@@ -1,5 +1,5 @@
-#ifndef _GAMEOBJECT_H_
-#define _GAMEOBJECT_H_
+#ifndef GAMEOBJECT_H_
+#define GAMEOBJECT_H_
 
 #include "graphics.h"
 #include "dataTypes.h"

@@ -1,5 +1,5 @@
-#ifndef _GRAPHICS_H_
-#define _GRAPHICS_H_
+#ifndef GRAPHICS_H_
+#define GRAPHICS_H_
 
 #include<SDL2/SDL.h>
 #include <stack>
