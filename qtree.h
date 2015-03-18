@@ -1,8 +1,10 @@
-#ifndef _QUADTREE_H_
-#define _QUADTREE_H_
+#ifndef QUADTREE_H_
+#define QUADTREE_H_
 
 #include <vector>
 #include <iostream>
+#include <cstddef>
+
 struct Point
 {
 	float x, y;
@@ -16,7 +18,7 @@ struct AABB
     
     AABB(Point centre = Point(), Point halfSize = Point()): centre(centre), halfSize(halfSize){};
     
-    bool contains(Point a)
+    bool contains(Point a) const
     {
         if(a.x < centre.x + halfSize.x && a.x > centre.x - halfSize.x)
         {
@@ -28,7 +30,7 @@ struct AABB
         return false;
     }
     
-    bool intersects(AABB other)
+    bool intersects(const AABB& other) const
     {
         //this right > that left                                          this left <s that right
         if(centre.x + halfSize.x > other.centre.x - other.halfSize.x || centre.x - halfSize.x < other.centre.x + other.halfSize.x)
@@ -67,7 +69,7 @@ class Quadtree
         
         std::vector< Data<T> > objects;
         
-        int CAPACITY;       
+        int capacity;       
     public:
         Quadtree<T>();
         Quadtree<T>(AABB boundary);
@@ -80,26 +82,15 @@ class Quadtree
 };
 
 template <class T>
-Quadtree<T>::Quadtree()
+Quadtree<T>::Quadtree(): nw(NULL), ne(NULL), sw(NULL), se(NULL)
 {
-    CAPACITY = 4;
-    nw = NULL;
-    ne = NULL;
-    sw = NULL;
-    se = NULL;
-    boundary = AABB();
-    objects = std::vector< Data<T> >();
+    capacity = 4;
 }
 
 template <class T>
-Quadtree<T>::Quadtree(AABB boundary)
+Quadtree<T>::Quadtree(AABB boundary): nw(NULL), ne(NULL), sw(NULL), se(NULL)
 {
-    objects = std::vector< Data<T> >();
-    CAPACITY = 4;
-    nw = NULL;
-    ne = NULL;
-    sw = NULL;
-    se = NULL;
+    capacity = 4;
     this->boundary = boundary;
 }
 
@@ -115,7 +106,7 @@ Quadtree<T>::~Quadtree()
 template <class T>
 void Quadtree<T>::subdivide()
 {
-    Point qSize = Point(boundary.halfSize.x, boundary.halfSize.y);
+    Point qSize = Point(boundary.halfSize.x/2, boundary.halfSize.y/2);
     Point qCentre = Point(boundary.centre.x - qSize.x, boundary.centre.y - qSize.y);
     nw = new Quadtree(AABB(qCentre, qSize));
     
@@ -137,7 +128,7 @@ bool Quadtree<T>::insert(Data<T> d)
         return false;
     }
     
-    if(objects.size() < CAPACITY)
+    if(objects.size() < capacity)
     {
         objects.push_back(d);
         return true;
