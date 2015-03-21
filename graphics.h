@@ -39,7 +39,8 @@ class Graphics
 	private:
 		int screen_width;
 		int screen_height;
-	
+		AABB viewport;
+		
 		SDL_Window* window;
 		SDL_Renderer *renderer;
 		
@@ -54,6 +55,7 @@ class Graphics
 		void init_window();
 		void drawObject(GraphicsObject ob);
 		void Draw();
+		inline AABB viewportRect(){return viewport;};
 
 	private:
 		void drawRectangle(Point pos, Point size, float rotation);

@@ -14,5 +14,6 @@ class GameObject
 
 		void Update();
 		void Draw(Graphics& graphics);
+		inline Point Position(){return go.position;};
 };
 #endif

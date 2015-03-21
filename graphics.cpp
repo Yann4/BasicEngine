@@ -7,6 +7,7 @@ Graphics::Graphics()
 {
 	screen_width = 640;
 	screen_height = 480;
+	viewport = AABB(Point(screen_width/2, screen_height/2), Point(screen_width/2, screen_height/2));
 	
 	clear_colour = Colour();
 	clear_colour.blue();
@@ -19,6 +20,7 @@ Graphics::Graphics(int s_width, int s_height, Colour colour)
 {
 	screen_width = s_width;
 	screen_height = s_height;
+	viewport = AABB(Point(screen_width/2, screen_height/2), Point(screen_width/2, screen_height/2));
 	
 	clear_colour = colour;
 	

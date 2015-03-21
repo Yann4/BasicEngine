@@ -8,7 +8,16 @@ typedef std::chrono::high_resolution_clock Time;
 bool Game::load()
 {
 	//Add code for loading and initialising objects
+	qtree = Quadtree(graphics.viewportRect());
+	Colour c;
+	c.red();
+	qtree.insert(Data(GameObject(CIRCLE, Point(40, 40), 20, 20, c)));
+	qtree.insert(Data(GameObject(CIRCLE, Point(80, 40), 20, 20, c)));
+	qtree.insert(Data(GameObject(CIRCLE, Point(40, 100), 20, 20, c)));
+	qtree.insert(Data(GameObject(CIRCLE, Point(200, 200), 20, 20, c)));
+	qtree.insert(Data(GameObject(CIRCLE, Point(200, 400), 20, 20, c)));
 	return true;
+	
 }
 
 void Game::unload()
@@ -24,6 +33,10 @@ void Game::Update()
 void Game::Draw()
 {
 	//Add code to draw all game objects
+	for(auto&& obj: qtree.queryRange(graphics.viewportRect()))
+	{
+		obj.obj.Draw(graphics);
+	}
 	graphics.Draw(); //This line needed to actually draw all of the objects onscreen
 }
 
