@@ -1,19 +1,20 @@
-#ifndef _COLLISION_H_
-#define _COLLISION_H_
+#ifndef COLLISION_H_
+#define COLLISION_H_
 
 #include "dataTypes.h"
 
+#include <vector>
 struct CollisionObject
-	{
-		Point position;
-		Shape shape;
-		Point size;
-		float rotation;
-		
-		CollisionObject(){};
-		CollisionObject(Point pos, Shape shape, Point size, float rotation):
-		position(pos), shape(shape), size(size), rotation(rotation){};
-	};
+{
+	Point position;
+	Shape shape;
+	Point size;
+	float rotation;
+	
+	CollisionObject(){};
+	CollisionObject(Point pos, Shape shape, Point size, float rotation):
+	position(pos), shape(shape), size(size), rotation(rotation){};
+};
 	
 class Collision
 {	
@@ -29,6 +30,11 @@ class Collision
 		Point rect_triCollision(CollisionObject& rect, CollisionObject& tri);
 		Point tri_triCollision(CollisionObject& a, CollisionObject& b);
 		
+		std::vector<Point> pointsOfShape(CollisionObject& a);
+		Point rotatePoint(Point toRotate, double theta, Point pivot);
 		double pythSq(Point a, Point b);
+		Point normal(Point vector);
+		float dotprod(Point a, Point b);
+		Point normalise(Point vector);
 };
 #endif
