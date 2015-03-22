@@ -124,6 +124,7 @@ Point Collision::rect_rectCollision(CollisionObject& a, CollisionObject& b)
 		normalB.push_back(normal(sidesB.at(i)));
 	}
 	//Now need to project sides onto axes http://www.dyn4j.org/2010/01/sat/
+	Point smallest;
 	
 	for(int i = 0; i < normalA.size(); i++)
 	{
@@ -256,4 +257,14 @@ Point Collision::normalise(Point vector)
 {
 	double mag = sqrt((vector.x*vector.x) + (vector.y*vector.y));
 	return Point(vector.x/mag, vector.y/mag);
+}
+
+float Collision::max(Point p)
+{
+	return p.x > p.y ? p.x : p.y;
+}
+
+float Collision::min(Point p)
+{
+	return p.x < p.y ? p.x : p.y;
 }

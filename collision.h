@@ -36,5 +36,7 @@ class Collision
 		Point normal(Point vector);
 		float dotprod(Point a, Point b);
 		Point normalise(Point vector);
+		float max(Point p);
+		float min(Point p);
 };
 #endif
